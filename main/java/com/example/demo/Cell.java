@@ -12,7 +12,7 @@ public class Cell {
     private Text textClass;
     private boolean modify = false;
 
-    void setModify(boolean modify) {
+    void setModify(boolean modify) {       //setter method
         this.modify = modify;
     }
 
@@ -20,17 +20,34 @@ public class Cell {
         return modify;
     }
 
-    Cell(double x, double y, double scale, Group root) {
+    Cell(double x, double y, double scale, Group root) {  //Build the cell
         rectangle = new Rectangle();
-        rectangle.setX(x);
-        rectangle.setY(y);
-        rectangle.setHeight(scale);
-        rectangle.setWidth(scale);
+        cellLocation(x, y);                               
+        cellFrame(scale);                                 
+        cellColor();
+        cellText(x, y, root);
+        
         this.root = root;
-        rectangle.setFill(Color.rgb(224, 226, 226, 0.5));
-        this.textClass = TextMaker.getSingleInstance().madeText("0", x, y, root);
         root.getChildren().add(rectangle);
     }
+
+	private void cellLocation(double x, double y) {         //Set the cell location
+		rectangle.setX(x);
+        rectangle.setY(y);
+	}
+
+	private void cellFrame(double scale) {                   //Set the size of cell
+		rectangle.setHeight(scale);
+        rectangle.setWidth(scale);
+	}
+
+	private void cellText(double x, double y, Group root) {  
+		this.textClass = TextMaker.getSingleInstance().madeText("0", x, y, root);
+	}
+
+	private void cellColor() {                               //Set the color of cell
+        rectangle.setFill(Color.rgb(224, 226, 226, 0.5));
+	}
 
     void setTextClass(Text textClass) {
         this.textClass = textClass;
