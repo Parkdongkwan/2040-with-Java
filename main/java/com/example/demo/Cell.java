@@ -12,15 +12,30 @@ public class Cell {
     private Text textClass;
     private boolean modify = false;
 
-    void setModify(boolean modify) {       //setter method
+    /**
+     * Set the boolean value modify
+     * @param modify
+     */
+    void setModify(boolean modify) {       
         this.modify = modify;
     }
 
+    /**
+     * return the boolean value modify
+     * @return
+     */
     boolean getModify() {
         return modify;
     }
-
-    Cell(double x, double y, double scale, Group root) {  //Build the cell
+    
+    /**
+     * Constructor for Cell class
+     * @param x
+     * @param y
+     * @param scale
+     * @param root
+     */
+    Cell(double x, double y, double scale, Group root) {  
         rectangle = new Rectangle();
         cellLocation(x, y);                               
         cellFrame(scale);                                 
@@ -31,28 +46,10 @@ public class Cell {
         root.getChildren().add(rectangle);
     }
 
-	private void cellLocation(double x, double y) {         //Set the cell location
-		rectangle.setX(x);
-        rectangle.setY(y);
-	}
-
-	private void cellFrame(double scale) {                   //Set the size of cell
-		rectangle.setHeight(scale);
-        rectangle.setWidth(scale);
-	}
-
-	private void cellText(double x, double y, Group root) {  
-		this.textClass = TextMaker.getSingleInstance().madeText("0", x, y, root);
-	}
-
-	private void cellColor() {                               //Set the color of cell
-        rectangle.setFill(Color.rgb(224, 226, 226, 0.5));
-	}
-
-    void setTextClass(Text textClass) {
-        this.textClass = textClass;
-    }
-
+    /**
+     * Change the cell
+     * @param cell
+     */
     void changeCell(Cell cell) {
         TextMaker.changeTwoText(textClass, cell.getTextClass());
         root.getChildren().remove(cell.getTextClass());
@@ -68,6 +65,10 @@ public class Cell {
         cell.setColorByNumber(cell.getNumber());
     }
 
+    /**
+     * Add the two cell with number inside in it
+     * @param cell
+     */
     void adder(Cell cell) {
         cell.getTextClass().setText((cell.getNumber() + this.getNumber()) + "");
         textClass.setText("0");
@@ -76,6 +77,10 @@ public class Cell {
         setColorByNumber(getNumber());
     }
 
+    /**
+     * Set the color of cell by number
+     * @param number
+     */
     void setColorByNumber(int number) {
         switch (number) {
             case 0:
@@ -117,6 +122,28 @@ public class Cell {
 
         }
 
+    }
+    
+	private void cellLocation(double x, double y) {         //Set the cell location
+		rectangle.setX(x);
+        rectangle.setY(y);
+	}
+
+	private void cellFrame(double scale) {                   //Set the size of cell
+		rectangle.setHeight(scale);
+        rectangle.setWidth(scale);
+	}
+
+	private void cellText(double x, double y, Group root) {   //set the text in cell
+		this.textClass = TextMaker.getSingleInstance().madeText("0", x, y, root);
+	}
+
+	private void cellColor() {                               //Set the color of cell
+        rectangle.setFill(Color.rgb(224, 226, 226, 0.5));
+	}
+
+    void setTextClass(Text textClass) {
+        this.textClass = textClass;
     }
 
     double getX() {

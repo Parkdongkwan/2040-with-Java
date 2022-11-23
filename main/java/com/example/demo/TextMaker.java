@@ -4,34 +4,66 @@ import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-
+/**
+ * 
+ * @author DongKwanPark-modified
+ * This class make a desired text and return it. Also, it can change the texts
+ */
 class TextMaker {
-    private static TextMaker singleInstance = new TextMaker();   //instantiated
-    private static double length = GameScene.getLENGTH();        
+    private static TextMaker singleInstance = null;
+    private static double length = GameScene.getLENGTH();        //static variables
     private static double fontSize = (3 * length) / 7.0;
 
     private TextMaker() {         //This constructor is private so that this class cannot be instantiated.
 
     }
 
-    static TextMaker getSingleInstance() {      //This method returns the object of this class
-        return singleInstance;                  // return the object
+    /**
+     * This method return the object this class
+     * @return object
+     */
+    static TextMaker getSingleInstance() {
+        if (singleInstance == null)
+            singleInstance = new TextMaker();
+        return singleInstance;
     }
 
-    Text madeText(String input, double xCell, double yCell, Group root) {      //This method write text( 2 or 4)  in the specified cell (Name changed)
-        Text text = new Text(input);
-        text.setFont(Font.font(fontSize));
-        text.relocate((xCell + (1.2)* length / 7.0), (yCell + 2 * length / 7.0));
-        text.setFill(Color.WHITE);
+    /**
+     * This method returns the text to specified location
+     * @param input
+     * @param xCell
+     * @param yCell
+     * @param root
+     * @return text
+     */
+    Text madeText(String input, double xCell, double yCell, Group root) {      
+        Text text = new Text(input);                                           
+        text.setFont(Font.font(fontSize));                             
+        text.relocate((xCell + (1.2)* length / 7.0), (yCell + 2 * length / 7.0)); 
+        text.setFill(Color.WHITE);                                           
 
-        return text;
+        return text;                                                              
     }
 
-    static void changeTwoText(Text first, Text second) { //violates rule of single responsibility
+    /**
+     * This method change the two text
+     * @param first
+     * @param second
+     */
+    static void changeTwoText(Text first, Text second) { 
         String temp;
         temp = first.getText();
         first.setText(second.getText());
         second.setText(temp);
+        
+//        double tempNumber;                           //(Fixed) Deleted the duplicated code
+//        tempNumber = first.getX();
+//        first.setX(second.getX());
+//        second.setX(tempNumber);
+//
+//        tempNumber = first.getY();
+//        first.setY(second.getY());
+//        second.setY(tempNumber);
 
     }
 

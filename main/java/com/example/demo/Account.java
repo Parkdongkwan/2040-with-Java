@@ -15,7 +15,7 @@ public class Account implements Comparable<Account> {
     private String userName ;
     private static ArrayList<Account> accounts = new ArrayList<>();
 
-    public Account(String userName){
+    public Account(String userName){   //CONSTRUCTOR
         this.userName=userName;
     }
 
@@ -32,7 +32,7 @@ public class Account implements Comparable<Account> {
         return score;
     }
 
-    private String getUserName() {
+    public String getUserName() {
         return userName;
     }
 
@@ -51,5 +51,7 @@ public class Account implements Comparable<Account> {
         accounts.add(account);
         return account;
     }
+    
+    
 
 }
