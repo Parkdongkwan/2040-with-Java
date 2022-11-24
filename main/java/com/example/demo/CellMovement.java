@@ -8,6 +8,24 @@ public class CellMovement {
     private static int n = 4;
     private Cell[][] cells = new Cell[n][n];
     private long score = 0;
+    private int count = 0;
+    
+    
+    /**
+     * This method return false if there was any modification in cells
+     * if there was any modification( count >0) , then it will return true and reset the count to 0 again.
+     * @return
+     */
+    public boolean countChanges() {
+    	if(count == 0)
+    		return false;
+    	else
+    		count = 0;
+    		return true;
+    }
+    
+
+    
     
     /**
      * Constructor for CellMovement class
@@ -23,6 +41,7 @@ public class CellMovement {
     public long getScore() {
     	return score;
     }
+
     
 	/**
 	 * According to the direction, this method returns the coordinate where the cells should move to. 
@@ -89,6 +108,7 @@ public class CellMovement {
     public void moveLeft() {
         for (int i = 0; i < n; i++) {
             for (int j = 1; j < n; j++) {
+            	if(cells[i][j].getNumber() != 0)
                 moveHorizontally(i, j, passDestination(i, j, 'l'), -1);
             }
             for (int j = 0; j < n; j++) {
@@ -103,6 +123,7 @@ public class CellMovement {
     public void moveRight() {
         for (int i = 0; i < n; i++) {
             for (int j = n - 1; j >= 0; j--) {
+            	if(cells[i][j].getNumber() != 0)
                 moveHorizontally(i, j, passDestination(i, j, 'r'), 1);
             }
             for (int j = 0; j < n; j++) {
@@ -117,10 +138,12 @@ public class CellMovement {
     public void moveUp() {
         for (int j = 0; j < n; j++) {
             for (int i = 1; i < n; i++) {
+            	if(cells[i][j].getNumber() != 0)
                 moveVertically(i, j, passDestination(i, j, 'u'), -1);
             }
             for (int i = 0; i < n; i++) {
                 cells[i][j].setModify(false);
+                
             }
         }
 
@@ -132,6 +155,7 @@ public class CellMovement {
     public void moveDown() {
         for (int j = 0; j < n; j++) {
             for (int i = n - 1; i >= 0; i--) {
+            	if(cells[i][j].getNumber() != 0)
                 moveVertically(i, j, passDestination(i, j, 'd'), 1);
             }
             for (int i = 0; i < n; i++) {
@@ -167,13 +191,17 @@ public class CellMovement {
  * @param sign
  */
     private void moveHorizontally(int i, int j, int des, int sign) {
-        if (isValidDesH(i, j, des, sign)) {
+        if (isValidDesH(i, j, des, sign) && !cells[i][des].getModify()) {  //(fIXED) Fixed the auto double merging.
             cells[i][j].adder(cells[i][des + sign]);
             score += cells[i][des + sign].getNumber();         //(Fixed) Fixed the scoring system by adding the value of merged cell after merging
             cells[i][des].setModify(true);
+            count++;                                           //Count if there was any modification in cells
         } else if (des != j) {
             cells[i][j].changeCell(cells[i][des]);
-        }
+            count++;                                           //Count if there was any modification in cells
+
+        } 
+
     }
 
     /**
@@ -201,12 +229,14 @@ public class CellMovement {
  * @param sign
  */
     private void moveVertically(int i, int j, int des, int sign) {
-        if (isValidDesV(i, j, des, sign)) {
+        if (isValidDesV(i, j, des, sign) && !cells[des][j].getModify()) {       //(Fixed) Fixed the auto double merging.
             cells[i][j].adder(cells[des + sign][j]);
             score += cells[des + sign][j].getNumber();        //(Fixed) Fixed the scoring system by adding the value of merged cell after merging
             cells[des][j].setModify(true);
+            count++;                                          //Count if there was any modification in cells           
         } else if (des != i) {
             cells[i][j].changeCell(cells[des][j]);
+            count++;                                          //Count if there was any modification in cells
         }
     }
 

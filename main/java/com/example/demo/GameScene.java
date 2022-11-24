@@ -34,6 +34,10 @@ class GameScene {
 //        n = number;
 //        LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
 //    }
+	
+
+	
+	
     
 	/**
 	 * @return the length of GameScene
@@ -133,7 +137,7 @@ class GameScene {
                     } else if (key.getCode() == KeyCode.RIGHT) {GameScene.this.move.moveRight();
                     } else { return;                                                                          //(Fixed) if any keys other than left,right,up,down is pressed, it will exit from the method
                     }
-                    
+                   
                 GameScene.this.sumCellNumbersToScore();
                 
                 RecordHighestScore obj = new RecordHighestScore(username,score);
@@ -149,7 +153,7 @@ class GameScene {
                             root.getChildren().clear();
                             score = 0;
                         }
-                    } else if(haveEmptyCell == 1)
+                    } else if(move.countChanges())      //(Fixed) if the cells are not moving(No changes) it will not generate random cells
                         GameScene.this.randomFill.randomFillNumber();
                 });
             });

@@ -12,6 +12,7 @@ public class Cell {
     private Text textClass;
     private boolean modify = false;
 
+
     /**
      * Set the boolean value modify
      * @param modify
@@ -19,6 +20,7 @@ public class Cell {
     void setModify(boolean modify) {       
         this.modify = modify;
     }
+
 
     /**
      * return the boolean value modify
@@ -161,5 +163,9 @@ public class Cell {
     private Text getTextClass() {
         return textClass;
     }
+
+
+
+
 
 }
