@@ -1,19 +1,27 @@
 package com.example.demo;
 
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 
 class GameScene {
@@ -24,6 +32,11 @@ class GameScene {
     private Cell[][] cells = new Cell[n][n];
     private long score = 0;
     private String username;
+    private final Integer startTime = 120;
+    private Integer seconds = startTime;
+    Label label;
+
+
     
     
 	RandomFillNumber randomFill = new RandomFillNumber(this.cells);
@@ -99,10 +112,8 @@ class GameScene {
      */
     void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
     	
-    	LoginPage login = new LoginPage();                      //Pop up login Page
-    	login.popUpLoginWindow();
-    	this.username = login.getUserName();
 
+    	int gameType = 1;
         randomFill.root = root;
         
         for (int i = 0; i < n; i++) {                                  //Making 4 X 4 grid
@@ -125,8 +136,8 @@ class GameScene {
         scoreText.setFont(Font.font(20));
         scoreText.setText("0");
 
-        randomFill.randomFillNumber();                //Generate random numbers in the grid
-        randomFill.randomFillNumber();
+        randomFill.randomFillNumberGeneral();                //Generate random numbers in the grid
+        randomFill.randomFillNumberGeneral();
 
         gameScene.addEventHandler(KeyEvent.KEY_PRESSED, key ->{
                 Platform.runLater(() -> {
@@ -149,13 +160,187 @@ class GameScene {
                         if (GameScene.this.move.canNotMove()) { 
                         	popUpScoreWindow();
                             primaryStage.setScene(endGameScene);
-                            EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score, username, obj.getHighestScore(), obj.getHighestUserName());
+                            EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score, MenuSceneController.username, obj.getHighestScore(), obj.getHighestUserName(), gameType);
                             root.getChildren().clear();
                             score = 0;
                         }
                     } else if(move.countChanges())      //(Fixed) if the cells are not moving(No changes) it will not generate random cells
-                        GameScene.this.randomFill.randomFillNumber();
+                        GameScene.this.randomFill.randomFillNumberGeneral();
                 });
             });
     }
+    
+    
+    void game2(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
+    	
+
+    	int gameType = 2;
+        randomFill.root = root;
+        
+        for (int i = 0; i < n; i++) {                                  
+            for (int j = 0; j < n; j++) {
+                cells[i][j] = new Cell((j) * LENGTH + (j + 1) * distanceBetweenCells,
+                        (i) * LENGTH + (i + 1) * distanceBetweenCells, LENGTH, root);
+            }
+        }
+     
+        Text text = new Text();                  
+        root.getChildren().add(text);
+        text.setText("SCORE :");        
+        text.setFont(Font.font(30));
+        text.relocate(750, 100);
+        
+        
+        Text scoreText = new Text();
+        root.getChildren().add(scoreText);           
+        scoreText.relocate(750, 150);
+        scoreText.setFont(Font.font(20));
+        scoreText.setText("0");
+
+        randomFill.randomFillNumberHard();                
+        randomFill.randomFillNumberHard();
+
+        gameScene.addEventHandler(KeyEvent.KEY_PRESSED, key ->{
+                Platform.runLater(() -> {
+                    int haveEmptyCell;
+                    if (key.getCode() == KeyCode.DOWN) {GameScene.this.move.moveDown();                      
+                    } else if (key.getCode() == KeyCode.UP) {GameScene.this.move.moveUp();
+                    } else if (key.getCode() == KeyCode.LEFT) {GameScene.this.move.moveLeft();
+                    } else if (key.getCode() == KeyCode.RIGHT) {GameScene.this.move.moveRight();
+                    } else { return;                                                                          
+                    }
+                   
+                GameScene.this.sumCellNumbersToScore();
+                
+                RecordHighestScore obj = new RecordHighestScore(username,score);
+                obj.ComputeHighestScore();       
+                
+                    scoreText.setText(score + "");
+                    haveEmptyCell = GameScene.this.haveEmptyCell();
+                    if (haveEmptyCell == -1) {
+                        if (GameScene.this.move.canNotMove()) { 
+                        	popUpScoreWindow();
+                            primaryStage.setScene(endGameScene);
+                            EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score, MenuSceneController.username, obj.getHighestScore(), obj.getHighestUserName(), gameType);
+                            root.getChildren().clear();
+                            score = 0;
+                        }
+                    } else if(move.countChanges())      
+                        GameScene.this.randomFill.randomFillNumberHard();
+                });
+            });
+    }
+    
+    
+    void game3(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
+    	
+
+    	int gameType = 3;
+        randomFill.root = root;
+        
+        for (int i = 0; i < n; i++) {                                 
+            for (int j = 0; j < n; j++) {
+                cells[i][j] = new Cell((j) * LENGTH + (j + 1) * distanceBetweenCells,
+                        (i) * LENGTH + (i + 1) * distanceBetweenCells, LENGTH, root);
+            }
+        }
+     
+        Text text = new Text();                  
+        root.getChildren().add(text);
+        text.setText("SCORE :");        
+        text.setFont(Font.font(30));
+        text.relocate(750, 100);
+        
+        label = new Label();
+        label.setTextFill(Color.RED);
+        label.setFont(Font.font(20));
+        label.relocate(700, 200);
+        root.getChildren().add(label);
+        countDown(gameScene,root,primaryStage,endGameScene,endGameRoot);
+        
+        
+        Text scoreText = new Text();
+        root.getChildren().add(scoreText);          
+        scoreText.relocate(750, 150);
+        scoreText.setFont(Font.font(20));
+        scoreText.setText("0");
+
+        randomFill.randomFillNumberGeneral();                
+        randomFill.randomFillNumberGeneral();
+
+        gameScene.addEventHandler(KeyEvent.KEY_PRESSED, key ->{
+                Platform.runLater(() -> {
+                    int haveEmptyCell;
+                    if (key.getCode() == KeyCode.DOWN) {GameScene.this.move.moveDown();                      
+                    } else if (key.getCode() == KeyCode.UP) {GameScene.this.move.moveUp();
+                    } else if (key.getCode() == KeyCode.LEFT) {GameScene.this.move.moveLeft();
+                    } else if (key.getCode() == KeyCode.RIGHT) {GameScene.this.move.moveRight();
+                    } else { return;                                                                         
+                    }
+                   
+                GameScene.this.sumCellNumbersToScore();
+                
+                RecordHighestScore obj = new RecordHighestScore(username,score);
+                obj.ComputeHighestScore();       
+                
+                    scoreText.setText(score + "");
+                    haveEmptyCell = GameScene.this.haveEmptyCell();
+                    if (haveEmptyCell == -1) {
+                        if (GameScene.this.move.canNotMove()) { 
+                        	popUpScoreWindow();
+                            primaryStage.setScene(endGameScene);
+                            EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score, MenuSceneController.username, obj.getHighestScore(), obj.getHighestUserName(), gameType);
+                            root.getChildren().clear();
+                            score = 0;
+                        }
+                    } else if(move.countChanges())     
+                        GameScene.this.randomFill.randomFillNumberGeneral();
+                });
+            });
+    }
+    
+    
+
+    
+    
+    /**
+     * This method function as countdown timer. It will change to end game scene when times up.
+     * @param gameScene
+     * @param root
+     * @param primaryStage
+     * @param endGameScene
+     * @param endGameRoot
+     */
+    private void countDown(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
+    	int gameType = 3;
+    	Timeline time = new Timeline();
+    	time.setCycleCount(Timeline.INDEFINITE);
+    	
+    	if(time!= null) {
+    		time.stop();
+    	}
+    	KeyFrame frame = new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+    		@Override
+    		public void handle(ActionEvent event) {
+    			seconds--;
+    			label.setText("You Only Have: "+seconds.toString());
+    			if(seconds<=0) {
+    				time.stop();
+    				
+                    RecordHighestScore obj = new RecordHighestScore(username,score);
+                    obj.ComputeHighestScore();       
+                    primaryStage.setScene(endGameScene);
+                    EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score, MenuSceneController.username, obj.getHighestScore(), obj.getHighestUserName(), gameType);
+                    root.getChildren().clear();
+                    score = 0;
+                    
+    			}
+    		}
+    	});
+    	time.getKeyFrames().add(frame);
+    	time.playFromStart();
+    }
+    
+    
+    
 }

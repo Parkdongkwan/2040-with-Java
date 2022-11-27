@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.MenuSceneController">
+   <children>
+      <AnchorPane fx:id="myPane2" layoutY="-1.0" prefHeight="900.0" prefWidth="900.0">
+         <children>
+            <Label layoutX="237.0" layoutY="121.0" text="Choose the game mode">
+               <font>
+                  <Font size="42.0" />
+               </font>
+            </Label>
+            <Button layoutX="340.0" layoutY="350.0" mnemonicParsing="false" onAction="#goToGame" prefHeight="50.0" prefWidth="200.0" text="Easy Mode" />
+            <Button layoutX="340.0" layoutY="457.0" mnemonicParsing="false" onAction="#goToGame2" prefHeight="50.0" prefWidth="200.0" text="Hard Mode" />
+            <Button layoutX="340.0" layoutY="565.0" mnemonicParsing="false" onAction="#goToGame3" prefHeight="50.0" prefWidth="200.0" text="Time-Limit Mode" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -102,6 +102,7 @@ public class CellMovement {
         }
         return -1;
     }
+    
     /**
      * Move all the cells to Left
      */
@@ -111,10 +112,9 @@ public class CellMovement {
             	if(cells[i][j].getNumber() != 0)
                 moveHorizontally(i, j, passDestination(i, j, 'l'), -1);
             }
-            for (int j = 0; j < n; j++) {
-                cells[i][j].setModify(false);
-            }
+            resetCellModi(cells);
         }
+        
     }
     
     /**
@@ -126,9 +126,7 @@ public class CellMovement {
             	if(cells[i][j].getNumber() != 0)
                 moveHorizontally(i, j, passDestination(i, j, 'r'), 1);
             }
-            for (int j = 0; j < n; j++) {
-                cells[i][j].setModify(false);
-            }
+            resetCellModi(cells);  
         }
     }
 
@@ -141,10 +139,8 @@ public class CellMovement {
             	if(cells[i][j].getNumber() != 0)
                 moveVertically(i, j, passDestination(i, j, 'u'), -1);
             }
-            for (int i = 0; i < n; i++) {
-                cells[i][j].setModify(false);
+            resetCellModi(cells);
                 
-            }
         }
 
     }
@@ -158,9 +154,7 @@ public class CellMovement {
             	if(cells[i][j].getNumber() != 0)
                 moveVertically(i, j, passDestination(i, j, 'd'), 1);
             }
-            for (int i = 0; i < n; i++) {
-                cells[i][j].setModify(false);
-            }
+            resetCellModi(cells);
         }
 
     }
@@ -255,6 +249,7 @@ public class CellMovement {
         }
         return false;
     }
+    
 /**
  * 
  * @return true if cannot move. And returns false if the cells can move.
@@ -268,6 +263,18 @@ public class CellMovement {
             }
         }
         return true;
+    }
+    
+    /**
+     * this method set all cells false for modification
+     * @param cells
+     */
+    public void resetCellModi(Cell[][] cells) {            // Extract out duplicated functionality 
+    	for (int i = 0; i < n; i++) {
+    	for (int j = 0; j < n; j++) {
+            cells[i][j].setModify(false);
+        }
+    	}
     }
 
 }

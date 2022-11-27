@@ -2,8 +2,12 @@ package com.example.demo;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -32,16 +36,28 @@ public class LoginPage {
         text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
         TextField textField = new TextField();
         Button button2 = new Button("ENTER");
+        button2.setMaxSize(100, 200);
+        Alert alert = new Alert(AlertType.ERROR);
+
+        
         button2.setOnAction(new EventHandler<ActionEvent>() {
         	@Override
         	public void handle(ActionEvent event) {
+        		if(textField.getText().trim().equals("")) {                      //if the user did not input username, it will alert the user to enter username
+        	        alert.setTitle("An error has been encountered");
+                    alert.setHeaderText("Please Enter Username");
+                    alert.showAndWait();
+        		}
+        		else
+        		{
         		userName = textField.getText();	
         		popupwindow2.close();	
+        		}
         	}
         }); 
         VBox root = new VBox(10);
         root.getChildren().addAll(text,textField,button2);
-        Scene scene2= new Scene(root, 300, 250);
+        Scene scene2= new Scene(root, 450, 200);
         popupwindow2.setScene(scene2);  
         popupwindow2.showAndWait();   
     }

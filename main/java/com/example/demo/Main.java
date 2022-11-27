@@ -37,24 +37,24 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Group accountRoot = new Group();
-        Scene accountScene = new Scene(accountRoot, WIDTH, HEIGHT, Color.rgb(150, 20, 100, 0.2));
-        Group getAccountRoot = new Group();
-        Scene getAccountScene = new Scene(getAccountRoot, WIDTH, HEIGHT, Color.rgb(200, 20, 100, 0.2));
-        Group rankRoot = new Group();
-        Scene rankScene = new Scene(rankRoot, WIDTH, HEIGHT, Color.rgb(250, 50, 120, 0.3));
-        BackgroundFill background_fill = new BackgroundFill(Color.rgb(120, 100, 100), CornerRadii.EMPTY, Insets.EMPTY);
-        Background background = new Background(background_fill);
+//        Group accountRoot = new Group();
+//        Scene accountScene = new Scene(accountRoot, WIDTH, HEIGHT, Color.rgb(150, 20, 100, 0.2));
+//        Group getAccountRoot = new Group();
+//        Scene getAccountScene = new Scene(getAccountRoot, WIDTH, HEIGHT, Color.rgb(200, 20, 100, 0.2));
+//        Group rankRoot = new Group();
+//        Scene rankScene = new Scene(rankRoot, WIDTH, HEIGHT, Color.rgb(250, 50, 120, 0.3));
+//        BackgroundFill background_fill = new BackgroundFill(Color.rgb(120, 100, 100), CornerRadii.EMPTY, Insets.EMPTY);
+//        Background background = new Background(background_fill);
 
 
-        Rectangle backgroundOfMenu = new Rectangle(240, 120, Color.rgb(120, 120, 120, 0.2));
-        backgroundOfMenu.setX(WIDTH / 2 - 120);
-        backgroundOfMenu.setY(180);
-
-        Rectangle backgroundOfMenuForPlay = new Rectangle(240, 140, Color.rgb(120, 20, 100, 0.2));
-        backgroundOfMenuForPlay.setX(WIDTH / 2 - 120);
-        backgroundOfMenuForPlay.setY(180);
-        accountRoot.getChildren().add(backgroundOfMenuForPlay);
+//        Rectangle backgroundOfMenu = new Rectangle(240, 120, Color.rgb(120, 120, 120, 0.2));
+//        backgroundOfMenu.setX(WIDTH / 2 - 120);
+//        backgroundOfMenu.setY(180);
+//
+//        Rectangle backgroundOfMenuForPlay = new Rectangle(240, 140, Color.rgb(120, 20, 100, 0.2));
+//        backgroundOfMenuForPlay.setX(WIDTH / 2 - 120);
+//        backgroundOfMenuForPlay.setY(180);
+//        accountRoot.getChildren().add(backgroundOfMenuForPlay);
         
         Parent menuRoot = FXMLLoader.load(getClass().getResource("Menu.fxml"));  
         Scene menuScene = new Scene(menuRoot, WIDTH, HEIGHT);

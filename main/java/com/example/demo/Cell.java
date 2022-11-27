@@ -47,6 +47,26 @@ public class Cell {
         this.root = root;
         root.getChildren().add(rectangle);
     }
+    
+    
+	private void cellLocation(double x, double y) {         //Set the cell location
+		rectangle.setX(x);
+        rectangle.setY(y);
+	}
+
+	private void cellFrame(double scale) {                   //Set the size of cell
+		rectangle.setHeight(scale);
+        rectangle.setWidth(scale);
+	}
+
+	private void cellText(double x, double y, Group root) {   //set the text in cell
+		this.textClass = TextMaker.getSingleInstance().madeText("0", x, y, root);
+	}
+
+	private void cellColor() {                               //Set the color of cell
+        rectangle.setFill(Color.rgb(224, 226, 226, 0.5));
+	}
+	
 
     /**
      * Change the cell
@@ -125,24 +145,6 @@ public class Cell {
         }
 
     }
-    
-	private void cellLocation(double x, double y) {         //Set the cell location
-		rectangle.setX(x);
-        rectangle.setY(y);
-	}
-
-	private void cellFrame(double scale) {                   //Set the size of cell
-		rectangle.setHeight(scale);
-        rectangle.setWidth(scale);
-	}
-
-	private void cellText(double x, double y, Group root) {   //set the text in cell
-		this.textClass = TextMaker.getSingleInstance().madeText("0", x, y, root);
-	}
-
-	private void cellColor() {                               //Set the color of cell
-        rectangle.setFill(Color.rgb(224, 226, 226, 0.5));
-	}
 
     void setTextClass(Text textClass) {
         this.textClass = textClass;

@@ -10,7 +10,6 @@ import java.io.BufferedReader;
  * If current user score is higher, it will over write the file. If not they will not write the current user name and score.
  */
 public class RecordHighestScore {
-	private String userName;
 	private String highestUserName;
 	private long score;
 	private long highestScore;
@@ -21,7 +20,6 @@ public class RecordHighestScore {
 	 * @param score
 	 */
 	RecordHighestScore(String userName, long score){
-		this.userName = userName;
 		this.score = score;
 	}
 	
@@ -57,7 +55,7 @@ public class RecordHighestScore {
 	public void WriteName() { 
 		try {
 		BufferedWriter WN = new BufferedWriter(new FileWriter("HighestUserName.txt"));
-		WN.write(userName);
+		WN.write(MenuSceneController.username);
 		WN.close();
 		}
 		catch(Exception e) {System.out.println(e);}	
