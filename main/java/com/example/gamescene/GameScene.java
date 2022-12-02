@@ -2,7 +2,8 @@ package com.example.gamescene;
 import com.example.account.RecordHighestScore;
 import com.example.cell.Cell;
 import com.example.cell.CellMovement;
-import endgame.EndGame;
+import com.example.endgame.EndGame;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -307,8 +308,6 @@ public class GameScene {
 
 				if(seconds<=0) {
 					time.stop();
-					
-					popUpScoreWindow();
 
 					recordScore = new RecordHighestScore();
 					recordScore.ComputeHighestScore();  

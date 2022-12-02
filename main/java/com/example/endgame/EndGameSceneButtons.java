@@ -1,4 +1,4 @@
-package endgame;
+package com.example.endgame;
 
 import java.util.Optional;
 
