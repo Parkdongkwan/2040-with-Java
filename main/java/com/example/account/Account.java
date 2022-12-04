@@ -1,6 +1,7 @@
 package com.example.account;
 
 import java.util.ArrayList;
+
 /**
  * 
  * @author ParkDongKwan-modified
@@ -42,7 +43,7 @@ public class Account {
      * @param userName
      * @return the object if there is same userName. If not it returns null
      */
-    static Account accountHaveBeenExist(String userName){
+    public static Account accountHaveBeenExist(String userName){
         for(Account account : accounts){
             if(account.getUserName().equals(userName)){
                 return account;
@@ -65,14 +66,20 @@ public class Account {
      * @param userName
      * @return account if there is same UserName. If not it returns null
      */
-    static Account deleteSameUserName(String userName) {
+    public static boolean deleteSameUserName(String userName) {
     	for(Account account : accounts) {
     		if(account.getUserName().equals(userName)) {
-    			return account;
+    			accounts.remove(account);
+    			return true;
     		}
     	}
-		return null;
+    	return false;
+    }
+    
+    public static Account makeNewAccount(String userName,long score){
+        Account account = new Account(userName,score);
+        accounts.add(account);
+        return account;
     }
     
 }
-//Hello

@@ -58,6 +58,8 @@ public class GameScene {
 	private Scene endGameScene;
 	private Group endGameRoot;
 	
+	Timeline time = new Timeline();
+	
 	/**
 	 * Constructor
 	 * @param primaryStage
@@ -177,7 +179,7 @@ public class GameScene {
 	 * This method set the score 
 	 */
 	private void sumCellNumbersToScore() {
-		score = move.getScore();
+		setScore(move.getScore());
 	}
 
 	/**
@@ -260,6 +262,7 @@ public class GameScene {
 				haveEmptyCell = GameScene.this.haveEmptyCell();
 				if (haveEmptyCell == -1) {
 					if (GameScene.this.move.canNotMove()) { 	
+						time.stop();                             //In case user is playing gmae3(Time-limit mode) it will stop the time when user lose earlier than countDown
 						popUpScoreWindow();
 
 						recordScore = new RecordHighestScore();
@@ -268,7 +271,7 @@ public class GameScene {
 						primaryStage.setScene(endGameScene);
 						EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, recordScore.getHighestScore(), recordScore.getHighestUserName(), gameType);
 						gameRoot.getChildren().clear();
-						score = 0;
+						setScore(0);
 					}
 				} else if(move.countChanges()) {     //(Fixed) if the cells are not moving(No changes) it will not generate random cells 
 					if (gameType ==2)
@@ -293,7 +296,7 @@ public class GameScene {
 		//gameType
 		int gameType = 3;
 
-		Timeline time = new Timeline();
+		
 		time.setCycleCount(Timeline.INDEFINITE);
 
 		if(time!= null) {
@@ -302,16 +305,15 @@ public class GameScene {
 		KeyFrame frame = new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-
 				seconds--;
 				remainingTime.setText("You Only Have: "+seconds.toString());
 
 				if(seconds<=0) {
-					time.stop();
-
+					time.stop();	
 					recordScore = new RecordHighestScore();
 					recordScore.ComputeHighestScore();  
 					//Set the scene to end game scene.
+					
 					primaryStage.setScene(endGameScene);
 					EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, recordScore.getHighestScore(), recordScore.getHighestUserName(), gameType);
 
@@ -333,6 +335,10 @@ public class GameScene {
 		remainingTime.setFont(Font.font(20));
 		remainingTime.relocate(700, 200);
 		gameRoot.getChildren().add(remainingTime);
+	}
+
+	public static void setScore(long score) {
+		GameScene.score = score;
 	}
 
 }

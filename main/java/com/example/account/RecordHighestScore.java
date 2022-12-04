@@ -43,7 +43,7 @@ public class RecordHighestScore {
 			readRecords();                     //Read text file and store it in arrayList
 
 			//If there is no same user name exist in array list
-			if(Account.accountHaveBeenExist(LoginPage.userName) == null) {  		
+			if(Account.accountHaveBeenExist(LoginPage.getUserName()) == null) {  		
 				writeRecords();
 				findHighestScore();	
 			}
@@ -52,14 +52,15 @@ public class RecordHighestScore {
 			else {
 
 				//Compare score with same name user's score
-				if(Account.accountHaveBeenExist(LoginPage.userName).getScore() >= GameScene.score) {  
+				if(Account.accountHaveBeenExist(LoginPage.getUserName()).getScore() >= GameScene.score) {  
 					findHighestScore();	
 
 				}
 				else {
-					Account.accounts.remove(Account.deleteSameUserName(LoginPage.userName));      
+					if(Account.deleteSameUserName(LoginPage.getUserName())) {      
 					reWrite();
 					findHighestScore();
+					}
 				}
 			}
 
@@ -74,12 +75,9 @@ public class RecordHighestScore {
 	public void writeRecords() { 
 		try {
 			BufferedWriter WN = new BufferedWriter(new FileWriter("Records.txt", true));	
+			Account.makeNewAccount(LoginPage.getUserName(),GameScene.score);
 
-			Account acc;
-			acc = new Account(LoginPage.userName,GameScene.score);
-			Account.accounts.add(acc);
-
-			WN.write(LoginPage.userName +", " + String.valueOf(GameScene.score) + "\n");
+			WN.write(LoginPage.getUserName() +", " + String.valueOf(GameScene.score) + "\n");
 			WN.close();
 		}
 		catch(Exception e) {System.out.println(e);}	
@@ -96,13 +94,10 @@ public class RecordHighestScore {
 			Scanner sc  = new Scanner(new File("Records.txt")).useDelimiter(", |\n"); //Read data file
 
 			while(sc.hasNext()) {
-				Account acc;
-
 				String userName = sc.next();
 				String score = sc.next();
 
-				acc = new Account(userName,Long.parseLong(score));
-				Account.accounts.add(acc);		
+				Account.makeNewAccount(userName,Long.parseLong(score));		
 			}
 			sc.close();
 
@@ -134,10 +129,7 @@ public class RecordHighestScore {
 	 * If the method cannot find the file or face any exceptions, it will print exception message.
 	 */
 	public void reWrite() {	
-
-		Account acc;
-		acc = new Account(LoginPage.userName,GameScene.score);
-		Account.accounts.add(acc);
+		Account.makeNewAccount(LoginPage.getUserName(),GameScene.score);
 
 		File oldFile = new File("Records.txt");
 		oldFile.delete();

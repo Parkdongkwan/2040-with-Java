@@ -1,8 +1,4 @@
-Faker, 2000
-Park, 1000
-Dong, 2100
-Kwan, 4000
-0814, 1234
-haha, 1024
-hahah, 388
-ez, 140
+KimOz, 2872
+KimDongWoo, 1216
+A, 868
+ahah, 1416

@@ -1,9 +1,7 @@
 package com.example.account;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.text.Font;
@@ -20,8 +18,6 @@ public class Top5Users {
 	
     static final int WIDTH = 700;
     static final int HEIGHT = 700; 
-
-	public List<Account> top5Array = new ArrayList<>();     //Store top 5 account in ascending order ( highest = 0 index)
 	
 	/**
 	 * It sorts the array list

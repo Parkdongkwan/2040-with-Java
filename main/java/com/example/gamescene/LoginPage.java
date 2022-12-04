@@ -20,7 +20,7 @@ import javafx.stage.Stage;
  * And give access of the user name obtained from text field to other class using getUsrName method.
  */
 public class LoginPage {
-	public static String userName;       
+	private static String userName;       
 	
 	/**
 	 * Pop up the window to obtain user name from the text field.
@@ -56,7 +56,7 @@ public class LoginPage {
 				}
 				else
 				{
-					userName = textField.getText();	
+					setUserName(textField.getText());	
 					stage.close();	
 				}
 			}
@@ -68,5 +68,13 @@ public class LoginPage {
 
 		//This pop up window will not disappear before the user close the window.
 		stage.showAndWait();                                              
+	}
+
+	public static String getUserName() {
+		return userName;
+	}
+
+	public static void setUserName(String userName) {
+		LoginPage.userName = userName;
 	}
 }

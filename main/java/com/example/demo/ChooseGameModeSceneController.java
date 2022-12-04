@@ -1,8 +1,10 @@
 package com.example.demo;
 
 import java.io.IOException;
+
 import com.example.gamescene.GameScene;
 import com.example.gamescene.LoginPage;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;

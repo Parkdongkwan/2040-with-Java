@@ -1,12 +1,13 @@
 package com.example.endgame;
+import com.example.gamescene.GameScene;
+import com.example.gamescene.LoginPage;
+
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import com.example.gamescene.GameScene;
-import com.example.gamescene.LoginPage;
 
 /**
  * This class handles everything happening in endGame scene
@@ -63,12 +64,12 @@ public class EndGame {
 	 * @param highestUserName
 	 */
 	public void endGameSceneUI(Group root, long highestScore, String highestUserName) {
-		Text text = new Text("GAME OVER");                      //Display "GAME OVER"
+		Text text = new Text("GAME OVER");                                  //Display "GAME OVER"
 		text.relocate(250,250);
 		text.setFont(Font.font(80));
 		root.getChildren().add(text);
 
-		Text userName = new Text("UserName:  "+ LoginPage.userName);        //Display userName
+		Text userName = new Text("UserName:  "+ LoginPage.getUserName());        //Display userName
 		userName.setFill(Color.BLACK);
 		userName.relocate(0,700);
 		userName.setFont(Font.font(50));
