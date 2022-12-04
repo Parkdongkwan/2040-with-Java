@@ -31,3 +31,8 @@ Fifth push (update5) :
 5. Added use of Account class to store all the users in text file (Not only highest) and not updating the score (if lower) of same user name.
 6  Added leaderboard where they show top 5 users with their scores.
 7. Added quit button in Menu scene.
+
+Six push ( update 6)
+1.change in package name
+2.(Bug fixed) Bug fixed where in game three if use die earlier than countdown, the timer still goes on.
+3. Create test class for Junit testing
