@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import com.example.account.Account;
+import com.example.demo.account.Account;
 
 class AccountClassTest {
 

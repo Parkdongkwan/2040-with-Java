@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="JavadocGenerationManager">
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../../주니카 모음집/자바독스" />
+    <option name="LOCALE" value="C:\Users\parkd\OneDrive\Desktop\CW-COMP2042" />
+  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>

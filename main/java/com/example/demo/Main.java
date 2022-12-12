@@ -6,6 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Main Class
+ * @author ParkDongKwan
+ *
+ */
 public class Main extends Application {
 	static final int WIDTH = 900;
 	static final int HEIGHT = 900;

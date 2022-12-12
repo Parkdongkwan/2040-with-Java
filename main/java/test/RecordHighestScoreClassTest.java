@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import com.example.account.Account;
-import com.example.account.RecordHighestScore;
+import com.example.demo.account.Account;
+import com.example.demo.account.RecordHighestScore;
 
 
 class RecordHighestScoreClassTest {

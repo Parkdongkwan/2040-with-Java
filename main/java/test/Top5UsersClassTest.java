@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import com.example.account.Account;
-import com.example.account.Top5Users;
+import com.example.demo.account.Account;
+import com.example.demo.endgame.Top5Users;
 
 class Top5UsersClassTest {
 	

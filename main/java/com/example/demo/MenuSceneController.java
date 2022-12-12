@@ -2,7 +2,6 @@ package com.example.demo;
 
 import java.io.IOException;
 import java.util.Optional;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,10 +18,10 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 /**
  * This class controls everything happening in Menu Scene.
- * @author DongKwanPark-modified
+ * @author ParkDongKwan
  *
  */
-public class MenuSceneController {
+public class MenuSceneController{
 	private Stage primaryStage;
 	static final int WIDTH = 900;
 	static final int HEIGHT = 900;
@@ -75,4 +74,6 @@ public class MenuSceneController {
 		myPane.setBackground(new Background(new BackgroundFill(myColor,null, null)));
 
 	}
+
+
 }
