@@ -107,11 +107,11 @@ public class RandomFillNumber {
 	/**
 	 * Calculate the boundary where random cell can be generated
 	 * @param emptyCells
-	 * @param a
-	 * @param b
+	 * @param a (row of the cell)
+	 * @param b (column of the cell)
 	 * @param aForBound
 	 * @param bForBound
-	 * @return
+	 * @return bound array which stores a boundary in 0 index and b boundary in 1 index. 
 	 */
 	public int[] calculateBoundary(Cell[][] emptyCells, int a, int b, int aForBound, int bForBound) {
 		outer:

@@ -34,7 +34,7 @@ public class ChooseGameModeSceneController {
 
 	/**
 	 * This method switches from ChooseGameMode Scene to Game1 Scene
-	 * @param event
+	 * @param event (Button event)
 	 * @throws IOException
 	 */
 	public void goToGame(ActionEvent event) throws IOException {    
@@ -48,7 +48,7 @@ public class ChooseGameModeSceneController {
 
 	/**
 	 * This method switches from ChooseGameMode Scene to Game2 Scene
-	 * @param event
+	 * @param event (Button event)
 	 * @throws IOException
 	 */
 	public void goToGame2(ActionEvent event) throws IOException {   
@@ -62,7 +62,7 @@ public class ChooseGameModeSceneController {
 
 	/**
 	 * This method switches from ChooseGameMode Scene to Game3 scene.
-	 * @param event
+	 * @param event (Button event)
 	 * @throws IOException
 	 */
 	public void goToGame3(ActionEvent event) throws IOException {    
@@ -76,8 +76,8 @@ public class ChooseGameModeSceneController {
 
 	/**
 	 * Create different gameScene for different gameType
-	 * @param event
-	 * @param gameType
+	 * @param event (Button event)
+	 * @param gameType (Type 1 is easy mode Type 2 is hard mode Type 3 is time-limit mode)
 	 */
 	private void createSceneForGame(ActionEvent event, int gameType) {
 		endGameRoot = new Group();

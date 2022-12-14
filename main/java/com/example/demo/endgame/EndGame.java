@@ -14,13 +14,11 @@ import javafx.stage.Stage;
  * @author ParkDongKwan-modified
  *
  */
-public class EndGame {
+public class EndGame extends EndGameSceneButtons{
 	static final int WIDTH = 900;
 	static final int HEIGHT = 900;
 	
-	private static EndGame singleInstance = null;    
-	
-	EndGameSceneButtons button = new EndGameSceneButtons();
+	private static EndGame singleInstance = null;
 	
 	GameScore gs = GameScore.getInstance();
 	GameUserName un = GameUserName.getInstance();
@@ -43,13 +41,13 @@ public class EndGame {
 
 	/**
 	 * This method displays the end game scene
-	 * @param endGameScene
+	 * @param endGameScene 
 	 * @param root
 	 * @param primaryStage
 	 * @param highestScore
 	 * @param highestUserName
-	 * @param gameType
-	 * @param winOrLose
+	 * @param gameType (Type 1 is easy mode Type 2 is hard mode Type 3 is time-limit mode)
+	 * @param winOrLose (If the user win = true, lose = false)
 	 */
 	public void endGameShow(Scene endGameScene, Group root, Stage primaryStage, long highestScore, String highestUserName, int gameType, boolean winOrLose){		
 		
@@ -59,13 +57,13 @@ public class EndGame {
 
 		gs.resetScore();  //Reset the score to 0
 		
-		button.quitButton(root);
+		quitButton(root);
 
-		button.returnMenuButton(root, primaryStage);
+		returnMenuButton(root, primaryStage);
 
-		button.retryGameButton(root, primaryStage, gameType, endGameScene);
+		retryGameButton(root, primaryStage, gameType, endGameScene);
 		
-		button.viewRankButton(root);
+		viewRankButton(root);
 	}
 
 	/**
@@ -73,11 +71,11 @@ public class EndGame {
 	 * @param root
 	 * @param highestScore
 	 * @param highestUserName
-	 * @param winOrLose
+	 * @param winOrLose (If the user win = true, lose = false)
 	 */
 	public void endGameSceneText(Group root, long highestScore, String highestUserName, boolean winOrLose) {
 		if(winOrLose) {
-		Text text = new Text("You Win!");                                  //Display "GAME OVER"
+		Text text = new Text("You Win!");                                  //Display "You Win"
 		text.relocate(250,250);
 		text.setFont(Font.font(80));
 		root.getChildren().add(text);

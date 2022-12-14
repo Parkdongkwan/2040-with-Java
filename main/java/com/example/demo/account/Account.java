@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 /**
  * 
- * This class stores the object in the arrayList, delete object from arrayList and compare the information of object. 
+ * This class stores the object of this class in the arrayList, delete object from arrayList and compare the information of object. 
  * @author ParkDongKwan-modified
  */
 
@@ -14,8 +14,8 @@ public class Account {
 
     /**
      * Constructor
-     * @param userName
-     * @param score
+     * @param userName 
+     * @param score 
      */
     public Account(String userName, long score){   
         this.userName=userName;
@@ -63,7 +63,7 @@ public class Account {
     /**
      * Delete the object which has same userName in arayList
      * @param userName
-     * @return account if there is same UserName. If not it returns null
+     * @return account if there is same UserName. If not it returns false
      */
     public static boolean deleteSameUserName(String userName) {
     	for(Account account : accounts) {
@@ -76,10 +76,10 @@ public class Account {
     }
     
     /**
-     * Make new account with userName and score. And store it in account arrayList.
+     * Make new account with userName and score. And store it in account arrayList and return that account object.
      * @param userName
      * @param score
-     * @return account
+     * @return account which was made
      */
     public static Account makeNewAccount(String userName,long score){
         Account account = new Account(userName,score);

@@ -87,7 +87,7 @@ public class EndGameSceneButtons {
 	 * This button allows users to rePlay the game with the same game mode they chose previously.
 	 * @param root
 	 * @param primaryStage
-	 * @param gameType
+	 * @param gameType (Type 1 is easy mode Type 2 is hard mode Type 3 is time-limit mode)
 	 * @param endGameScene
 	 */
 	public void retryGameButton(Group root, Stage primaryStage, int gameType, Scene endGameScene) {

@@ -22,7 +22,7 @@ import javafx.util.Duration;
  */
 public class Timer {
 	
-	private final Integer startTime = 200;
+	private final Integer startTime = 60;
 	private Integer seconds = startTime;
 	
 	Label remainingTime;
@@ -36,7 +36,7 @@ public class Timer {
 	 * @param gameRoot
 	 * @param endGameScene
 	 * @param endGameRoot
-	 * @param time
+	 * @param time (time limit)
 	 */
 	public void countDown(Stage primaryStage, Group gameRoot, Scene endGameScene, Group endGameRoot, Timeline time) {
 		//gameType

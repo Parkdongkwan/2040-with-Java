@@ -33,7 +33,7 @@ public class MenuSceneController{
 
 	/**
 	 * This method switches from menu scene to ChooseGameMode Scene.
-	 * @param event
+	 * @param event (Button event)
 	 * @throws IOException
 	 */
 	public void goToChooseGame(ActionEvent event) throws IOException {
@@ -49,7 +49,7 @@ public class MenuSceneController{
 	/**
 	 * If any action event happens, this method will alert user with message if they want to quit the page.
 	 * If they press yes, it will exit the system.
-	 * @param event
+	 * @param event (Button event)
 	 * @throws IOException
 	 */
 	public void quitButton(ActionEvent event) throws IOException {
@@ -66,7 +66,7 @@ public class MenuSceneController{
 
 	/**
 	 * This method changes the menu background color.
-	 * @param event
+	 * @param event (Color Picker)
 	 * @throws IOException 
 	 */
 	public void changeBackgroundColor(ActionEvent event) throws IOException {            

@@ -22,7 +22,7 @@ public class Cell {
 
 	/**
 	 * Set the boolean value "modify"
-	 * @param modify
+	 * @param modify 
 	 */
 	public void setModify(boolean modify) {       
 		this.modify = modify;
@@ -37,9 +37,9 @@ public class Cell {
 
 	/**
 	 * Constructor for Cell class
-	 * @param x
-	 * @param y
-	 * @param scale
+	 * @param x (location of cell in x axis)
+	 * @param y (location of cell in y axis)
+	 * @param scale (size of the cell)
 	 * @param root
 	 */
 	public Cell(double x, double y, double scale, Group root) {  
@@ -55,8 +55,8 @@ public class Cell {
 
 	/**
 	 * Set the cell(rectangle) location
-	 * @param x
-	 * @param y
+	 * @param x (location of cell in x axis)
+	 * @param y (location of cell in y axis)
 	 */
 	private void cellLocation(double x, double y) {         
 		rectangle.setX(x);
@@ -65,7 +65,7 @@ public class Cell {
 
 	/**
 	 * Set the size of cell(rectangle)
-	 * @param scale
+	 * @param scale (size of cell)
 	 */
 	private void cellFrame(double scale) {                   
 		rectangle.setHeight(scale);
@@ -74,8 +74,8 @@ public class Cell {
 
 	/**
 	 * Set the text inside cell(rectangle)
-	 * @param x
-	 * @param y
+	 * @param x (location of cell in x axis)
+	 * @param y (location of cell in y axis)
 	 * @param root
 	 */
 	private void cellText(double x, double y, Group root) {   
@@ -123,7 +123,7 @@ public class Cell {
 
 	/**
 	 * Set different color of cell by different number
-	 * @param number
+	 * @param number (indicates number written in the cell)
 	 */
 	public void setColorByNumber(int number) {
 		switch (number) {

@@ -196,7 +196,7 @@ public class GameScene {
 
 	/**
 	 * Control all the actions when the keys are pressed.
-	 * @param gameType
+	 * @param gameType (Type 1 is easy mode Type 2 is hard mode Type 3 is time-limit mode)
 	 */
 	public void gameEventHandler(int gameType) {
 

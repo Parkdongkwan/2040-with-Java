@@ -1,38 +1,23 @@
 # COMP2042_CW_Park_Dong_Kwan
-Park Dong Kwan 20307405
 
-First push (update) :
-1. Fixed adding up score algorithm 
-2. Fixed the error of getting stuck in the scene screen when pressing the quit button.
+Park Dongkwan 20307405
 
-Second push (update2) :
-1. Separate out CellMovement class, RandomFillNumber class from GameScene class.
-2. Added Menu(FXML) Screen and button where it direct to gamescene.
-3. Added Color Picker in menu screen so that it can change the background color of gamescene.
-4. Added a pop up login page before getting into gamescene.
-5. Added a class where it records the highest score by comparing in txt file. 
-6. Added a text about highest score and highest username in the endgamescene. 
-7. Added pop up window showing the score after the game ends. 
+To run this program, JRE System Library[jdk-17.0.2], JAVAFX, Junit 5 should be included in module path. 
+Javadoc is in the file named “COMP2042-ParkDongKwan”. COMP2042-ParkDongKwan\JavaDoc
+Features added:
+Added a menu screen and choose difficulty screen by using FXML Scene builder. In menu screen, I added “Play Game” button which will switch from menu screen to choose game mode screen and “Quit” button which will turn off the whole system. Another thing is color picker which will change the menu screen, game screen and end game screen. In choose difficulty screen, I added three buttons that each lead to a different mode of the game.
+Added a login screen which will pop up when the user chooses the game mode. Login screen contains text field where user can enter their name. If the user doesn’t write anything or leave a blank between words, it will alert the user with message. 
+Added three different game types easy, hard, time-limit mode. Easy mode is same as original. Hard mode will generate 2,4,8 as random number instead of 2,4 (original). Time-limit mode added one more condition to lose which is whenever the timer reaches 0. 
+Added score pop up window when user lose the game. 
+Added account system so all the users will be stored in the txt file and only the highest score will be stored for same username. Using the account system, we added top 5 list by sorting the user information by their score. 
+Added a function that changes the text in end game screen “Game Over” to “You Win!” when the user wins the game. And in the end game screen, I added return Menu button, Retry Game button where user can retry the game with same game type and color theme chosen previously. Also, View Top Players button where user can view top 5 highest player score and username. In the end game screen, the highest player and score and current username and score are displayed. 
+I could implement a game mode that changes grid size (n x n), but even with small change of grid size, the difference in difficulty gets too big. Therefore, I chose not to change the original gird size. 
+Classes that I newly made are ChooseGameModeSceneController.java, MenuSceneController.java, RecordHighestScore.java, EndGameSceneButtons.java, Top5Users.java, GameScore.java, Timer.java, GameUserName.java, LoginPage.java. 
+All Classes in the original code was modified. And I extracted CellMovement.java and RandomFillNumber.java from GameScene.java.
+Bug/Logic error fixed:
+1.	Fixed the way scores being added. 
+2.	Fixed error where the random cells are keep generating even though the cells cannot move. 
+3.	Fixed error where the cell which is already merged can also be merged again in an action. 
+4.	Fixed a bug where the game still goes on even though user win the game. 
+5.	Fixed a quit button in endgame screen which do not close the window properly. 
 
-Third push (update3) :
-1.Fixed an error where the cells don't move, but random numbers keep generating. 
-2.Fixed an error in which already merged cells are merged once more.  
-
-Fourth push (update4) :
-1. Added a functionality in login page which alert the user if user did not put any value in textfield. 
-2. Added 2 more different games. First is that not only 2 and 4,  8 will also be generated randomly. Another game is with countdown timer. So if the timer become 0, the game will be ended.
-3. Added ChooseGameMode(FXML) screen with three buttons which enable user to play three different difficulty of games. 
-
-Fifth push (update5) :
-1. Fixed double merge 
-2. Reduce the use of textfile by saving both the username and score in one text file. 
-3. divded classes into packages.
-4. Made one more controller for ChooseGameModeScene. 
-5. Added use of Account class to store all the users in text file (Not only highest) and not updating the score (if lower) of same user name.
-6  Added leaderboard where they show top 5 users with their scores.
-7. Added quit button in Menu scene.
-
-Six push ( update 6)
-1.change in package name
-2.(Bug fixed) Bug fixed where in game three if use die earlier than countdown, the timer still goes on.
-3. Create test class for Junit testing

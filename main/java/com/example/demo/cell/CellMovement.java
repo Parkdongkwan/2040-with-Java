@@ -37,10 +37,10 @@ public class CellMovement {
 
 	/**
 	 * According to the direction, this method returns the coordinate where the cells should move to. 
-	 * @param i
-	 * @param j
-	 * @param direct
-	 * @return coordinate
+	 * @param i (row of the cell)
+	 * @param j (column of the cell)
+	 * @param direct (direction left,right,up,down) 
+	 * @return coordinate (destination of the cell) and if the direction is not (left or up or down or right) it will return -1.
 	 */
 	private int passDestination(int i, int j, char direct) {
 		int coordinate = j;
@@ -153,10 +153,10 @@ public class CellMovement {
 
 	/**
 	 * Validating if the cell can move horizontally
-	 * @param i
-	 * @param j
-	 * @param des
-	 * @param sign
+	 * @param i (row of the cell)
+	 * @param j (column of the cell)
+	 * @param des (destination of cell)
+	 * @param sign (left, down = -1 / right,up = 1)
 	 * @return true if the move is validated. If the move is not validated, it will return false.
 	 */
 	private boolean isValidDesH(int i, int j, int des, int sign) {
@@ -171,13 +171,13 @@ public class CellMovement {
 
 	/**
 	 * Move a cell Horizontally
-	 * @param i
-	 * @param j
-	 * @param des
-	 * @param sign
+	 * @param i (row of the cell)
+	 * @param j (column of the cell)
+	 * @param des (destination of cell)
+	 * @param sign (left, down = -1 / right,up = 1)
 	 */
 	private void moveHorizontally(int i, int j, int des, int sign) {
-		if (isValidDesH(i, j, des, sign) && !cells[i][des].getModify()) {  //(fIXED) Fixed the auto double merging.
+		if (isValidDesH(i, j, des, sign)) { 
 			cells[i][j].adder(cells[i][des + sign]);
 			gs.setScore(cells[i][des + sign].getNumber());         //(Fixed) Fixed the scoring system by updating the score variable instantly after merging.
 			//(Fixed) Fixed the error where wrong cell was setModify(true). Instead, i set cells[i][des+sign] 
@@ -194,10 +194,10 @@ public class CellMovement {
 
 	/**
 	 * Validating if the cell can move Vertically
-	 * @param i
-	 * @param j
-	 * @param des
-	 * @param sign
+	 * @param i (row of the cell)
+	 * @param j (column of the cell)
+	 * @param des (destination of cell)
+	 * @param sign (left, down = -1 / right,up = 1)
 	 * @return true if the move is validated. If the move is not validated, it will return false.
 	 */
 	private boolean isValidDesV(int i, int j, int des, int sign) {
@@ -211,13 +211,13 @@ public class CellMovement {
 
 	/**
 	 * Move a cell vertically
-	 * @param i
-	 * @param j
-	 * @param des
-	 * @param sign
+	 * @param i (row of the cell)
+	 * @param j (column of the cell)
+	 * @param des (destination of cell)
+	 * @param sign (left, down = -1 / right,up = 1)
 	 */
 	private void moveVertically(int i, int j, int des, int sign) {
-		if (isValidDesV(i, j, des, sign) && !cells[des][j].getModify()) {       //(Fixed) Fixed the auto double merging.
+		if (isValidDesV(i, j, des, sign)) {   
 			cells[i][j].adder(cells[des + sign][j]);
 			gs.setScore(cells[des + sign][j].getNumber());        //(Fixed) Fixed the scoring system by adding the value of merged cell after merging
 			//(Fixed) Fixed the error where wrong cell was setModify(true). Instead, i set cells[i][des+sign] 
@@ -232,8 +232,8 @@ public class CellMovement {
 
 	/**
 	 * Check if a cell have same number value of cell near by.
-	 * @param i
-	 * @param j
+	 * @param i (row of cell)
+	 * @param j (column of cell)
 	 * @return true if a cell have same number near by. If not, it returns false.
 	 */
 	private boolean haveSameNumberNearly(int i, int j) {
