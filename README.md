@@ -4,7 +4,9 @@ Park Dongkwan 20307405
 
 To run this program, JRE System Library[jdk-17.0.2], JAVAFX, Junit 5 should be included in module path. 
 Javadoc is in the file named “COMP2042-ParkDongKwan”. COMP2042-ParkDongKwan\JavaDoc
+
 Features added:
+
 Added a menu screen and choose difficulty screen by using FXML Scene builder. In menu screen, I added “Play Game” button which will switch from menu screen to choose game mode screen and “Quit” button which will turn off the whole system. Another thing is color picker which will change the menu screen, game screen and end game screen. In choose difficulty screen, I added three buttons that each lead to a different mode of the game.
 Added a login screen which will pop up when the user chooses the game mode. Login screen contains text field where user can enter their name. If the user doesn’t write anything or leave a blank between words, it will alert the user with message. 
 Added three different game types easy, hard, time-limit mode. Easy mode is same as original. Hard mode will generate 2,4,8 as random number instead of 2,4 (original). Time-limit mode added one more condition to lose which is whenever the timer reaches 0. 
@@ -14,7 +16,9 @@ Added a function that changes the text in end game screen “Game Over” to “
 I could implement a game mode that changes grid size (n x n), but even with small change of grid size, the difference in difficulty gets too big. Therefore, I chose not to change the original gird size. 
 Classes that I newly made are ChooseGameModeSceneController.java, MenuSceneController.java, RecordHighestScore.java, EndGameSceneButtons.java, Top5Users.java, GameScore.java, Timer.java, GameUserName.java, LoginPage.java. 
 All Classes in the original code was modified. And I extracted CellMovement.java and RandomFillNumber.java from GameScene.java.
+
 Bug/Logic error fixed:
+
 1.	Fixed the way scores being added. 
 2.	Fixed error where the random cells are keep generating even though the cells cannot move. 
 3.	Fixed error where the cell which is already merged can also be merged again in an action. 
